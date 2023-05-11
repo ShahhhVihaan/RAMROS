@@ -4,22 +4,27 @@
 
 1. Create a workspace directory: `mkdir -p {workspace_name}/src`
 2. Change directory to `/{workspace_name}/src`.
-3. Clone the package into the `src` folder by `git clone https://github.com/ShahhhVihaan/RAMROS.git`
-4. Build the workspace using the command `catkin_make` after changing the directory back to `.../{workspace_name}`.
+3. Clone the package into the `src` folder by cloning the repository `git clone https://github.com/ShahhhVihaan/RAMROS.git`.
+4. Install dependencies by first changing the directory back to `../{workspace_name}` and then entering the following commands:
+    ```
+    rosdep update
+    rosdep install --rosdistro $noetic --ignore-src--from-paths src
+    ```
+5. Build the workspace using the command `catkin_make` after the dependencies are installed in the same directory as before `../{workspace_name}`.
 
 
 In every terminal use the `source` command to source the bash script: `source ../{workspace_name}/devel/setup.bash`
 
 ---
 
-In your **first terminal**, after sourcing the bash scripts, open gazebo with a spawned model of the UR3, using the command
+In your **first terminal**, after sourcing the bash script, open gazebo with a spawned model of the UR3, using the command
 ```
 roslaunch ur_gazebo ur3_bringup.launch paused:=true
 ```
 This will open a paused model, allowing us to ensure that the controllers are set up correctly without encountering any errors in the subsequent steps. Additionally, the model is elevated from the floor to prevent any potential collision issues.
 
 ---
-In your **second terminal**, after sourcing the bash scripts, enter the following commands:
+In your **second terminal**, after sourcing the bash script, enter the following commands:
 ```
 gz physics -g 0
 ```
@@ -43,7 +48,7 @@ Once you see the message "You can start planning now!", it indicates that the Mo
 
 Running the following command will start up RViz, a 3D visualization tool used in ROS, with a pre-configured environment that includes the MoveIt! Motion Planning plugin. This plugin enables RViz to interact with the MoveIt planning package and visualize the robot's motion planning, including its configuration, trajectory, and collision checking. By launching RViz with this configuration, you can visualize the robot and its environment in the simulation and use RViz's tools to plan the robot's motion.
 
-In your **third terminal**, for starting up RViz with a configuration including the MoveIt! Motion Planning plugin run:
+In your **third terminal**, after sourcing the bash script, for starting up RViz with a configuration including the MoveIt! Motion Planning plugin run:
 ```
 roslaunch ur3_moveit_config moveit_rviz.launch
 ```
