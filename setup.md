@@ -26,13 +26,13 @@ This will open a paused model, allowing us to ensure that the controllers are se
 ---
 In your **second terminal**, after sourcing the bash script, enter the following commands:
 ```
-gz physics -g 0
+gz physics -g 0,0,0
 ```
 ```
 gz world -p 0
 ```
 ```
-gz physics -g -9.81
+gz physics -g 0,0,-9.81
 ```
 As soon as Gazebo's physics engine starts running, the joints of the robot are immediately subjected to the effects of gravity. If the controller_manager fails to load a controller quickly enough to regulate the joints, which is often the case, the robot will sink to the ground. To learn more about this issue, you can refer to this page on [GitHub](https://github.com/ros-industrial/universal_robot/issues/627).
 
