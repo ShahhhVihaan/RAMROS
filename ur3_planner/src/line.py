@@ -40,4 +40,5 @@ while not rospy.is_shutdown():
     count += 1
 
 
-moveit_commander.roscpp_shutdown()
+# moveit_commander.roscpp_shutdown()
+moveit_commander.rospy_shutdown()
